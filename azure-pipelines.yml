@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  tag: 'imadelfetouh99/kwetterfrontend'
   imageName: 'imadelfetouh99/kwetterfrontend'
 
 stages:
