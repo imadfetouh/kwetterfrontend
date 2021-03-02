@@ -25,5 +25,6 @@ stages:
         containerRegistry: 'dockerregistry'
         repository: 'imadelfetouh99/kwetterfrontend:latest'
         command: 'push'
+        tags: 'latest'
         
 
