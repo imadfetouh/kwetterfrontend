@@ -11,7 +11,6 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
   imageName: 'imadelfetouh99/kwetterfrontend'
-  dockerHub: dockerRegistryServiceConnection1
 
 stages:
 - stage: Build
@@ -37,3 +36,5 @@ stages:
           $(dockerHub)
         repository: $(imageName)
         command: push
+        
+
