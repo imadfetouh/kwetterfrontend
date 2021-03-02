@@ -2,6 +2,11 @@
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
+parameters:
+- name: tag
+  type: string
+  default: 'imadelfetouh99/kwetterfrontend'
+
 trigger:
 - main
 
@@ -26,8 +31,7 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/kwetterfrontend/Dockerfile'
-        tags: |
-          $(tag)
+        tags: '${{ parameters.tag }}'
 
     - task: Docker@2
       inputs:
