@@ -1,12 +1,3 @@
-# Docker
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
-parameters:
-- name: tag
-  type: string
-  default: 'imadelfetouh99/kwetterfrontend'
-
 trigger:
 - main
 
@@ -38,5 +29,6 @@ stages:
         containerRegistry: 'dockerregistry'
         repository: 'imadelfetouh99/kwetterfrontend'
         command: 'push'
+        arguments: '-t imadelfetouh99/kwetterfrontend'
         
 
