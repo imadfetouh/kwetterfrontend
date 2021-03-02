@@ -23,7 +23,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerregistry'
-        repository: 'imadelfetouh99/kwetterfrontend'
+        repository: 'imadelfetouh99/kwetterfrontend:latest'
         command: 'push'
         
 
