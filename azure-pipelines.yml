@@ -22,13 +22,12 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/kwetterfrontend/Dockerfile'
-        tags: '${{ parameters.tag }}'
+        arguments: '-t imadelfetouh99/kwetterfrontend'
 
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerregistry'
         repository: 'imadelfetouh99/kwetterfrontend'
         command: 'push'
-        arguments: '-t imadelfetouh99/kwetterfrontend'
         
 
