@@ -33,7 +33,7 @@ stages:
       displayName: Push image
       inputs:
         containerRegistry: |
-          $(dockerHub)
+          $(dockerRegistryServiceConnection)
         repository: $(imageName)
         command: push
         
