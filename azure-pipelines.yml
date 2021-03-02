@@ -1,0 +1,30 @@
+trigger:
+- main
+
+resources:
+- repo: self
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/kwetterfrontend/Dockerfile'
+        arguments: '-t imadelfetouh99/kwetterfrontend:latest'
+
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'dockerregistry'
+        repository: 'imadelfetouh99/kwetterfrontend'
+        command: 'push'
+        tags: 'latest'
+        
+
