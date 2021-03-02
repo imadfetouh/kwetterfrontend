@@ -11,6 +11,7 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
   imageName: 'imadelfetouh99/kwetterfrontend'
+  dockerHub: https://index.docker.io/v1/
 
 stages:
 - stage: Build
