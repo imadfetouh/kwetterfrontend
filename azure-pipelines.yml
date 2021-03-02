@@ -4,10 +4,6 @@ trigger:
 resources:
 - repo: self
 
-variables:
-  tag: 'imadelfetouh99/kwetterfrontend'
-  imageName: 'imadelfetouh99/kwetterfrontend'
-
 stages:
 - stage: Build
   displayName: Build image
@@ -27,7 +23,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'dockerregistry'
-        repository: 'imadelfetouh99/kwetterfrontend'
+        repository: 'imadelfetouh99/kwetterfrontend:latest'
         command: 'push'
         
 
