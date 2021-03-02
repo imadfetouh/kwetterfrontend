@@ -18,7 +18,7 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/kwetterfrontend/Dockerfile'
-        arguments: '-t imadelfetouh99/kwetterfrontend:16'
+        arguments: '-t imadelfetouh99/kwetterfrontend:latest'
 
     - task: Docker@2
       inputs:
