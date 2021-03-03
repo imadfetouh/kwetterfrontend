@@ -26,5 +26,13 @@ stages:
         repository: 'imadelfetouh99/kwetterfrontend'
         command: 'push'
         tags: 'latest'
-        
 
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Azure for Students (a82fa0f1-3269-403a-a80f-e6891debc186)'
+        appType: 'webAppContainer'
+        WebAppName: 'kwetterimad'
+        DockerNamespace: 'imadelfetouh99'
+        DockerRepository: 'kwetterfrontend'
+        DockerImageTag: 'latest'
