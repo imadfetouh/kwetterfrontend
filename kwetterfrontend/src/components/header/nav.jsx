@@ -11,7 +11,7 @@ class Nav extends React.Component {
     }
 
     increaseCount() {
-        this.setState({ count: this.state.count + 3 })
+        this.setState({ count: this.state.count + 10 })
     }
 
     render() {
