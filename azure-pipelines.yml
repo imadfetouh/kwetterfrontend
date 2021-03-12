@@ -46,3 +46,5 @@ stages:
         cliProjectKey: 'imadfetouh_kwetterfrontend'
         cliProjectName: 'kwetterfrontend'
         cliSources: '.'
+
+    - task: SonarCloudAnalyze@1
