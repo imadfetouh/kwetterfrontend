@@ -36,3 +36,13 @@ stages:
         DockerNamespace: 'imadelfetouh99'
         DockerRepository: 'kwetterfrontend'
         DockerImageTag: 'latest'
+      
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'sonarcloud'
+        organization: 'imadfetouh'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: 'imadfetouh_kwetterfrontend'
+        cliProjectName: 'kwetterfrontend'
+        cliSources: '.'
