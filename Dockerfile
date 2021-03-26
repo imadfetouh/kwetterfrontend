@@ -1,5 +1,5 @@
 # Build
-FROM node:alpine
+FROM node as build
 WORKDIR /app
 COPY /kwetterfrontend/package.json ./
 RUN npm install
@@ -8,4 +8,4 @@ RUN npm run-script build
 
 # Serve
 FROM httpd:latest
-COPY --from=0 /app/build /usr/local/apache2/htdocs/
+COPY --from=build /app/build /usr/local/apache2/htdocs/
