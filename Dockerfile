@@ -1,9 +1,9 @@
 # Build
 FROM node:alpine
 WORKDIR /app
-COPY kwetterfrontend/package.json ./
+COPY /kwetterfrontend/package.json ./
 RUN npm install
-COPY . ./
+COPY /kwetterfrontend/. ./
 RUN npm run-script build
 
 # Serve
