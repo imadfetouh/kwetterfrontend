@@ -7,5 +7,5 @@ COPY /kwetterfrontend/. ./
 RUN npm run-script build
 
 # Serve
-FROM nginx:alpine
-COPY --from=0 /app/build /usr/share/nginx/html
+FROM httpd:latest
+COPY /app/build /usr/local/apache2/htdocs/
