@@ -1,50 +1,15 @@
 trigger:
 - main
 
-resources:
-- repo: self
+pool:
+  vmImage: ubuntu-latest
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/kwetterfrontend/Dockerfile'
-        arguments: '-t imadelfetouh99/kwetterfrontend:latest'
-
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'dockerregistry'
-        repository: 'imadelfetouh99/kwetterfrontend'
-        command: 'push'
-        tags: 'latest'
-
-    - task: AzureRmWebAppDeployment@4
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'Azure for Students (a82fa0f1-3269-403a-a80f-e6891debc186)'
-        appType: 'webAppContainer'
-        WebAppName: 'kwetterimad'
-        DockerNamespace: 'imadelfetouh99'
-        DockerRepository: 'kwetterfrontend'
-        DockerImageTag: 'latest'
-      
-    - task: SonarCloudPrepare@1
-      inputs:
-        SonarCloud: 'sonarcloud'
-        organization: 'imadfetouh'
-        scannerMode: 'CLI'
-        configMode: 'manual'
-        cliProjectKey: 'imadfetouh_kwetterfrontend'
-        cliProjectName: 'kwetterfrontend'
-        cliSources: '.'
-
-    - task: SonarCloudAnalyze@1
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'DockerRegistry'
+    repository: 'imadelfetouh99/kwetterfrontend'
+    command: 'buildAndPush'
+    Dockerfile: 'Dockerfile'
+    buildContext: 
+    tags: 'latest'
