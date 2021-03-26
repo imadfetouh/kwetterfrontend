@@ -8,4 +8,4 @@ RUN npm run-script build
 
 # Serve
 FROM httpd:latest
-COPY /app/build /usr/local/apache2/htdocs/
+COPY --from=0 /app/build /usr/local/apache2/htdocs/
