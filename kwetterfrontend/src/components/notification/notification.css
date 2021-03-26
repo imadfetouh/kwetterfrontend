@@ -1,0 +1,14 @@
+.notificationWrapper{
+    width: 100%;
+}
+
+.notification{
+    width: 100%;
+    background-color: #f79494;
+    padding: 1em;
+}
+
+.notificationMessage{
+    width: 100%;
+    font-weight: 500;
+}

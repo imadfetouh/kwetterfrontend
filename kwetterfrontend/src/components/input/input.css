@@ -1,0 +1,8 @@
+.input{
+    width: inherit;
+    padding: 1em;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    transition: .2s;
+}

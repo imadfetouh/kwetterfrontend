@@ -1,0 +1,10 @@
+.form-group{
+    width: inherit;
+}
+
+.inputBorder{
+    height: 2px;
+    width: 0;
+    background-color: #006e6e;
+    transition: .2s;
+}
