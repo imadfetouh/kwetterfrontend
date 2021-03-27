@@ -23,4 +23,23 @@ instance.interceptors.response.use(function(response) {
 
 });
 
-export default instance
+const postRequest = (c, url, data, responseHandler, errorHandler) => {
+    instance.post(url, data)
+    .then((result) => {
+        responseHandler.setResult(result)
+        responseHandler.handleResponse()
+    })
+    .catch((error) => {
+        errorHandler.setError(error)
+        errorHandler.handleError()
+    })
+}
+
+export default function(type, c, url, data, responseHandler, errorHandler) {
+    if(type === "GET") {
+
+    }
+    else if(type === "POST") {
+        postRequest(c, url, data, responseHandler, errorHandler)
+    }
+}

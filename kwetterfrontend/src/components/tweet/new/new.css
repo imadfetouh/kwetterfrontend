@@ -1,0 +1,26 @@
+#new {
+    width: 100%;
+    background-color: #eee;
+}
+
+#newFlex {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+#userPic {
+    flex: 1;
+}
+
+#userPic img{
+    width: 100%;
+}
+
+#tweetInputWrapper {
+    flex: 8;
+    display: flex;
+    justify-content: left;
+    padding-left: 1rem;
+    align-items: center;
+}

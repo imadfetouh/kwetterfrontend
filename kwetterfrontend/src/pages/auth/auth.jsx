@@ -9,7 +9,8 @@ import qs from 'querystring'
 import urls from '../../config/urls/requesturls'
 import Spinner from '../../components/loader/spinner'
 import Notification from '../../components/notification/notification'
-import Link from 'react-router-dom/Link'
+import AuthResponseHandler from '../../config/axios/responsehandler/authresponsehandler'
+import AuthErrorHandler from '../../config/axios/errorhandler/autherrorhandler'
 
 export default class Auth extends React.Component {
     constructor(props) {
@@ -31,22 +32,8 @@ export default class Auth extends React.Component {
         }
 
         this.setState({showLoader: true})
-        
-        const data = {username: username, password: password}
-        axios.post(urls.signIn, qs.stringify(data))
-        .then((result) => {
-            if(result.status === 200){
-                alert("You are logged in " + result.data)
-            }
-        })
-        .catch((error) => {
-            if(error.response.status === 400){
-                this.setState({showLoader: false, notificationMessage: "You entered a wrong combination"})
-            }
-            else{
-                this.setState({showLoader: false, notificationMessage: "Oops! Something went wrong"})
-            }
-        })
+        const data = qs.stringify({username: username, password: password})
+        axios("POST", this, urls.signIn, data, new AuthResponseHandler(), new AuthErrorHandler(this))
     }
 
     render() {
@@ -72,7 +59,6 @@ export default class Auth extends React.Component {
                             <FormGroup>
                                 <Button value="Sign In" onClick={this.signIn}></Button>
                             </FormGroup>
-                            <span>or <Link to="/register">Create an account</Link></span>
                         </div>
                     </div>
                 </div>

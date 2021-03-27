@@ -1,0 +1,16 @@
+#flexColumnWrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#overviewWrapper {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.contentWrapper {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
