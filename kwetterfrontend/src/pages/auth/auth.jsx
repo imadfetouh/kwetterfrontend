@@ -46,7 +46,7 @@ export default class Auth extends React.Component {
                     <div id="formWrapper">
                         <Spinner showLoader={this.state.showLoader}/>
                         <div id="form">
-                            <div id="logoWrapper">
+                            <div id="logoWrapper" className="flexCenter">
                                 <img src={logo} alt=""/>
                             </div>
                             <Notification message={this.state.notificationMessage}/>

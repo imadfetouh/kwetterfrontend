@@ -9,7 +9,7 @@ export default class Spinner extends React.Component {
         const renderLoader = function() {
             if(showLoader) {
                 return (
-                    <div className="loaderWrapper">
+                    <div className="loaderWrapper flexCenter">
                         <div className="spinnerWrapper">
                             <div className="spinner"></div>
                         </div>

@@ -6,11 +6,8 @@
 }
 
 #overviewWrapper {
-    width: 50%;
+    width: 40%;
     height: auto;
     margin: 0 auto;
-}
-
-.contentWrapper {
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    margin-top: 2rem;
 }

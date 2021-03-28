@@ -19,8 +19,11 @@
 
 #tweetInputWrapper {
     flex: 8;
-    display: flex;
-    justify-content: left;
     padding-left: 1rem;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#tweetInputWrapper .button {
+    margin-top: .3rem;
 }

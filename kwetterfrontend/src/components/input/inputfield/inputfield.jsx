@@ -1,6 +1,5 @@
 import React from 'react'
 import '../input.css'
-import './inputfield.css'
 
 export default class InputField extends React.Component {
     render() {
