@@ -17,7 +17,7 @@ spec:
       containers:
         - name: kwetterfrontend
           imagePullPolicy: Always
-          image: imadelfetouh99/kwetterfrontend
+          image: imadelfetouh99/kwetterfrontend:latest
           ports:
             - containerPort: 3000
 ---
