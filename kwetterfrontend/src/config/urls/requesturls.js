@@ -1,4 +1,4 @@
-const gateway = 'http://localhost:8080/'
+const gateway = 'http://zuulproxyservice-service:8080/'
 
 const urls = {
     signIn: gateway + 'signin',
