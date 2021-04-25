@@ -1,0 +1,40 @@
+#flexColumnWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+}
+
+#formWrapper, #signUpHeader {
+    width: 100%;
+}
+
+#signUpHeader {
+    width: 100%;
+    text-align: center;
+}
+
+#signUpHeader h1 {
+    font-style: italic;
+}
+
+#formCenter {
+    width: 40%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    position: relative;
+}
+
+#signUpPhoto {
+    display: none;
+}
+
+#selectedImage {
+    padding-top: .5em;
+    max-width: 20%;
+}
+
+.form-group, .notificationWrapper{
+    padding: .5em !important;
+}

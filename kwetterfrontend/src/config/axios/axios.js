@@ -2,6 +2,8 @@ import axios from 'axios'
 
 const instance = axios.create()
 
+const headers = {"headers": {"content-type": "application/json"}}
+
 //before request
 instance.interceptors.request.use(function(config) {
     config.withCredentials = true
@@ -24,7 +26,7 @@ instance.interceptors.response.use(function(response) {
 });
 
 const postRequest = (c, url, data, responseHandler, errorHandler) => {
-    instance.post(url, data)
+    instance.post(url, data, headers)
     .then((result) => {
         responseHandler.setResult(result)
         responseHandler.handleResponse()

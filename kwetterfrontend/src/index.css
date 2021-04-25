@@ -16,6 +16,7 @@ html, body {
 
 #root, #appRoot, .wrapper{
   width: 100%;
+  background-color: #eee;
 }
 
 .boxShadow {
