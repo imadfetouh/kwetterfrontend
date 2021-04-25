@@ -13,3 +13,9 @@ steps:
     Dockerfile: 'docker/Dockerfile'
     buildContext: 
     tags: 'latest'
+    
+- task: KubernetesManifest@0
+  inputs:
+    action: 'deploy'
+    kubernetesServiceConnection: 'kube_kwetterimad'
+    manifests: 'kubernetes/kwetterfrontend.yaml'
