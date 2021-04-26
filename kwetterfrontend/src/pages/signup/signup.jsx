@@ -55,8 +55,9 @@ export default class SignUp extends React.Component {
         }
         else{
             this.setState({showLoader: true})
+            const headers = {"headers": {"content-type": "application/json"}}
             const data = JSON.stringify({username: username, password: password, repeatPassword: repeatPassword, photo: photo, bio: bio, location: location, website: website})
-            axios("POST", this, urls.signUp, data, new SignUpResponseHandler(this), new SignUpErrorHandler(this))
+            axios("POST", this, urls.signUp, data, headers, new SignUpResponseHandler(this), new SignUpErrorHandler(this))
         }
     }
 
