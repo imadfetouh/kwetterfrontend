@@ -10,4 +10,69 @@
     height: auto;
     margin: 0 auto;
     margin-top: 2rem;
+    position: relative;
+}
+
+.tweetBox {
+    width: 100%;
+}
+
+.tweetFlex {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.tweetPic {
+    flex: 1;
+}
+
+.tweetPic img{
+    width: 100%;
+}
+
+.tweetData {
+    flex: 8;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.tweetDate, .tweetUsername, .tweetContent, .tweetActions {
+    width: 100%;
+    text-align: left;
+}
+
+.tweetUsername label {
+    font-weight: bold;
+}
+
+.tweetDate label {
+    color: gray;
+}
+
+.tweetContent {
+    margin-top: .5rem;
+    background-color: #fff;
+}
+
+.tweetContent p {
+    margin: 0;
+    padding: .5rem;
+}
+
+.tweetActions {
+    padding-top: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.tweetActions span{
+    font-size: 2rem;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.tweetActions span:hover{
+    color: red;
 }

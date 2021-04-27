@@ -27,6 +27,10 @@ html, body {
   border-radius: .5rem;
 }
 
+.contentBox {
+  margin-top: 2rem;
+}
+
 .flexCenter {
   display: flex;
   justify-content: center;
