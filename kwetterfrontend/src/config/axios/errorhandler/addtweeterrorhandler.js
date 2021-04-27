@@ -1,4 +1,4 @@
-export default class AuthErrorHandler {
+export default class AddTweetErrorHandler {
 
     constructor(c) {
         this.c = c
@@ -11,7 +11,7 @@ export default class AuthErrorHandler {
     handleError() {
         if(this.error.response) {
             if(this.error.response.status === 400) {
-                this.c.setState({notificationMessage: "You entered a wrong combination"})
+                this.c.setState({notificationMessage: "Please add some content first"})
             }
             else{
                 this.c.setState({notificationMessage: "Oops! Something went wrong"})

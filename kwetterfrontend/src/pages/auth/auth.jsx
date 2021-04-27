@@ -26,7 +26,7 @@ export default class Auth extends React.Component {
         const username = document.getElementById("signInUsername").value.trim()
         const password = document.getElementById("signInPassword").value.trim()
 
-        if(username === "" || password === "") {
+        if(username.trim() === "" || password.trim() === "") {
             this.setState({notificationMessage: "Please fill all fields in"})
             return;
         }

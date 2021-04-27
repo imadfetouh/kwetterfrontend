@@ -16,7 +16,7 @@ instance.interceptors.response.use(function(response) {
 }, function(error) {
     if(error.response){
         if(error.response.status === 401) {
-            window.location.href = "http://localhost:3000"
+            window.location.href = "http://localhost:3000/auth"
         }
     }
     return Promise.reject(error)

@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: row;
     padding: 1rem;
+    position: relative;
 }
 
 #userPic {
@@ -25,5 +26,5 @@
 }
 
 #tweetInputWrapper .button {
-    margin-top: .3rem;
+    margin: .3rem 0;
 }
