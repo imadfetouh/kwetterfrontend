@@ -10,10 +10,11 @@ export default class GetTweetsResponseHandler {
 
     handleResponse() {
         if(this.result.status === 200) {
-            console.log(this.result.data)
             this.c.setState({tweets: this.result.data})
+            this.c.setState({notificationMessage: ""})
         }
         else if(this.result.status === 204) {
+            this.c.setState({tweets: []})
             this.c.setState({notificationMessage: "No tweets found. Add Some!"})
         }
         else{

@@ -34,7 +34,7 @@ export default class Auth extends React.Component {
         this.setState({showLoader: true})
         const headers = {"headers": {"content-type": "application/x-www-form-urlencoded"}}
         const data = qs.stringify({username: username, password: password})
-        axios("POST", this, urls.signIn, data, headers, new AuthResponseHandler(), new AuthErrorHandler(this))
+        axios("POST", urls.signIn, data, headers, new AuthResponseHandler(), new AuthErrorHandler(this))
     }
 
     render() {

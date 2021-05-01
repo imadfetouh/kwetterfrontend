@@ -5,22 +5,56 @@
     flex-direction: column;
 }
 
+#flexRowWrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
 #overviewWrapper {
     width: 40%;
     height: auto;
     margin: 0 auto;
+}
+
+#mentionWrapper, #overviewWrapper, #trendWrapper {
     margin-top: 2rem;
     position: relative;
+    height: fit-content;
+    flex: 1;
+}
+
+#mentionWrapper, #trendWrapper {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.paddingBox {
+    padding: 1rem;
+}
+
+.mentionBox, .trendBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mentionBox h4, .trendBox h4 {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1rem;
 }
 
 .tweetBox {
     width: 100%;
+    margin-top: 2rem;
 }
 
 .tweetFlex {
     display: flex;
     flex-direction: row;
-    padding: 1rem;
 }
 
 .tweetPic {
@@ -75,4 +109,15 @@
 
 .tweetActions span:hover{
     color: red;
+}
+
+.lblTrend {
+    display: block;
+    cursor: pointer;
+    padding: .3rem;
+}
+
+.lblTrend:hover {
+    background-color: #fff;
+    border-left: 2px solid #1bcfcf;
 }

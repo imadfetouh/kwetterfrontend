@@ -34,7 +34,7 @@ export default class New extends React.Component {
         this.setState({showLoader: true})
         const headers = {"headers": {"content-type": "application/json"}}
         const data = content
-        axios("POST", this, urls.tweet, data, headers, new AddTweetResponseHandler(this), new AddTweetErrorHandler(this))
+        axios("POST", urls.tweet, data, headers, new AddTweetResponseHandler(this), new AddTweetErrorHandler(this))
     }
 
     render() {

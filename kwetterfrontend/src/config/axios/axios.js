@@ -23,7 +23,7 @@ instance.interceptors.response.use(function(response) {
 
 });
 
-const getRequest = (c, url, data, headers, responseHandler, errorHandler) => {
+const getRequest = (url, data, headers, responseHandler, errorHandler) => {
     instance.get(url, data, headers)
     .then((result) => {
         responseHandler.setResult(result)
@@ -35,7 +35,7 @@ const getRequest = (c, url, data, headers, responseHandler, errorHandler) => {
     })
 }
 
-const postRequest = (c, url, data, headers, responseHandler, errorHandler) => {
+const postRequest = (url, data, headers, responseHandler, errorHandler) => {
     instance.post(url, data, headers)
     .then((result) => {
         responseHandler.setResult(result)
@@ -47,11 +47,11 @@ const postRequest = (c, url, data, headers, responseHandler, errorHandler) => {
     })
 }
 
-export default function(type, c, url, data, headers, responseHandler, errorHandler) {
+export default function(type, url, data, headers, responseHandler, errorHandler) {
     if(type === "GET") {
-        getRequest(c, url, data, headers, responseHandler, errorHandler)
+        getRequest(url, data, headers, responseHandler, errorHandler)
     }
     else if(type === "POST") {
-        postRequest(c, url, data, headers, responseHandler, errorHandler)
+        postRequest(url, data, headers, responseHandler, errorHandler)
     }
 }

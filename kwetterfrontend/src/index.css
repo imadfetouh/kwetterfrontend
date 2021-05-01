@@ -16,19 +16,16 @@ html, body {
 
 #root, #appRoot, .wrapper{
   width: 100%;
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .boxShadow {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  background-color: #eee;
 }
 
 .rounded {
   border-radius: .5rem;
-}
-
-.contentBox {
-  margin-top: 2rem;
 }
 
 .flexCenter {
