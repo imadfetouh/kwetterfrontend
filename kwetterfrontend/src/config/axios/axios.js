@@ -18,7 +18,7 @@ instance.interceptors.response.use(function(response) {
 }, function(error) {
     if(error.response){
         if(error.response.status === 401) {
-            window.location.href = "http://20.80.120.180:8080/auth"
+            window.location.href = "http://20.80.120.56:3000/auth"
         }
     }
     return Promise.reject(error)
