@@ -1,6 +1,7 @@
 import React from 'react';
 import './nav.css'
 import logo from '../../img/duck.png'
+import manager from '../../img/manager.png'
 import FormGroup from '../form-group/form-group'
 import InputField from '../input/inputfield/inputfield'
 import {reactLocalStorage} from 'reactjs-localstorage'
@@ -26,8 +27,11 @@ class Nav extends React.Component {
                             </div>
                         </div>
                         <div id="menuRight" className="flexCenter">
-                            <div id="menuUsername">
-                                <label id="lblMenuUsername">{reactLocalStorage.get('username', true)}</label>
+                            <div id="menuManager" className="flexCenter">
+                                <a href="/manage" className="flexCenter"><img src={manager} id="manager" alt=""/></a>
+                            </div>
+                            <div id="menuUsername" className="flexCenter">
+                                <label id="lblMenuUsername">{reactLocalStorage.get('username')}</label>
                             </div>
                         </div>
                     </div>

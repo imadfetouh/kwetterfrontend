@@ -27,3 +27,17 @@
 #lblMenuUsername{
     font-size: 1.5rem;
 }
+
+#menuManager {
+    margin-right: .5rem;
+}
+
+#menuManager a{
+    margin: 0;
+    padding: 0;
+}
+
+#manager{
+    max-width: 2vw;
+    cursor: pointer;
+}

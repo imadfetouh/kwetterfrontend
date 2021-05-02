@@ -1,5 +1,5 @@
 import React from 'react'
-import './admin.css'
+import './manage.css'
 import Menu from '../../components/header/nav'
 import FormGroup from '../../components/form-group/form-group'
 import InputField from '../../components/input/inputfield/inputfield'
@@ -18,17 +18,31 @@ import Notification from '../../components/notification/notification'
 import Button from '../../components/button/button'
 import {reactLocalStorage} from 'reactjs-localstorage';
 
-export default class Admin extends React.Component {
+export default class Manage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             role: reactLocalStorage.get('role'),
             showLoader: false,
             notificationMessage: "",
-            users: []
+            users: [],
+            searchUsers: []
         }
         this.getUsers = this.getUsers.bind(this)
         this.addUser = this.addUser.bind(this)
+        this.searchUsers = this.searchUsers.bind(this)
+    }
+
+    searchUsers(event) {
+        if(event.target.value.trim() === "") {
+            this.setState({searchUsers: this.state.users})
+        }
+
+        const searchUsers = this.state.users.filter((u) => {
+            return u.username.includes(event.target.value.trim())
+        })
+
+        this.setState({searchUsers: searchUsers})
     }
 
     selectPhoto() {
@@ -37,7 +51,6 @@ export default class Admin extends React.Component {
 
     setPhoto() {
         const src = document.getElementById("newUserPhoto");
-
         document.getElementById("selectedImage").innerText = src.files[0].name
     }
 
@@ -94,7 +107,7 @@ export default class Admin extends React.Component {
                 <tr>
                     <td>
                         <Select id="newUserRole">
-                            <option value="user">USER</option>
+                            <option value="USER">USER</option>
                             <option value="MODERATOR">MODERATOR</option>
                             <option value="ADMINISTRATOR">ADMINISTRATOR</option>
                         </Select>
@@ -152,7 +165,7 @@ export default class Admin extends React.Component {
                             <div id="filterWrapper">
                                 <div className="filterItem">
                                     <FormGroup>
-                                        <InputField type="text" placeholder="Search user" id="searchUsername"/>
+                                        <InputField type="text" placeholder="Search user" id="searchUsername" onKeyUp={this.searchUsers}/>
                                     </FormGroup>
                                 </div>
                             </div>
@@ -172,7 +185,7 @@ export default class Admin extends React.Component {
                                     </thead>
                                     <tbody>
                                         {userForm}
-                                        {this.state.users.map((u, i) => {
+                                        {this.state.searchUsers.map((u, i) => {
                                             return (
                                                 <tr key={i}>
                                                     <td><Roles role={u.role} userId={u.userId}/></td>

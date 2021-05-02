@@ -2,7 +2,7 @@ const paths = {
     root: '/',
     auth: '/auth',
     signup: '/signup',
-    admin: '/admin'
+    manage: '/manage'
 }
 
 export default paths

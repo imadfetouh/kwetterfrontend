@@ -67,9 +67,3 @@ tr:hover {
 input[type="file"] {
     display: none;
 }
-
-#photo {
-    display: flex;
-    flex-direction: column;
-}
-
