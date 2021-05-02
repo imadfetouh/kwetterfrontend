@@ -14,12 +14,10 @@ export default class SignUp extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            photo: "",
             showLoader: false,
             notificationMessage: ""
         }
         this.signUp = this.signUp.bind(this)
-        this.showPhoto = this.showPhoto.bind(this)
     }
 
     selectPhoto() {
@@ -28,7 +26,6 @@ export default class SignUp extends React.Component {
 
     showPhoto() {
         const src = document.getElementById("signUpPhoto");
-        this.setState({photo: src.files[0].name})
         const target = document.getElementById("selectedImage");
 
         let fr = new FileReader();
@@ -39,24 +36,31 @@ export default class SignUp extends React.Component {
     }
 
     signUp() {
-        const username = document.getElementById("signUpUsername").value
-        const password = document.getElementById("signUpPassword").value
-        const repeatPassword = document.getElementById("signUpRepeatPassword").value
-        const bio = document.getElementById("signUpBio").value
-        const location = document.getElementById("signUpLocation").value
-        const website = document.getElementById("signUpWebsite").value
-        const photo = this.state.photo
+        const src = document.getElementById("signUpPhoto");
+        const username = document.getElementById("signUpUsername").value.trim()
+        const password = document.getElementById("signUpPassword").value.trim()
+        const repeatPassword = document.getElementById("signUpRepeatPassword").value.trim()
+        const bio = document.getElementById("signUpBio").value.trim()
+        const location = document.getElementById("signUpLocation").value.trim()
+        const website = document.getElementById("signUpWebsite").value.trim()
+        const photo = src.files[0]
 
-        if(username.trim() === "" || password.trim() === "" || repeatPassword.trim() === "" || bio.trim() === "" || location.trim() === "" || website.trim() === "" || photo.trim() === "") {
+        if(username === "" || password === "" || repeatPassword === "" || bio === "" || location === "" || website === "" || photo.name.trim() === "") {
             this.setState({notificationMessage: "Please fill all fields in"})
         }
-        else if(password.trim() !== repeatPassword.trim()) {
+        else if(password !== repeatPassword) {
             this.setState({notificationMessage: "Passwords don't match"})
         }
         else{
+            let formData = new FormData()
+            formData.append('user', JSON.stringify({username: username, password: password, repeatPassword: repeatPassword, photo: photo.name.trim(), bio: bio, location: location, website: website}))
+            formData.append('photo', photo)
+
+            const headers = {"headers": {"content-type": "multipart/form-data"}}
+            const data = formData
+
             this.setState({showLoader: true})
-            const headers = {"headers": {"content-type": "application/json"}}
-            const data = JSON.stringify({username: username, password: password, repeatPassword: repeatPassword, photo: photo, bio: bio, location: location, website: website})
+           
             axios("POST", urls.signUp, data, headers, new SignUpResponseHandler(this), new SignUpErrorHandler(this))
         }
     }
