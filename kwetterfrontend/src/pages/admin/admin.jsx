@@ -22,6 +22,7 @@ export default class Admin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            role: reactLocalStorage.get('role'),
             showLoader: false,
             notificationMessage: "",
             users: []
@@ -42,7 +43,8 @@ export default class Admin extends React.Component {
 
     getUsers() {
         this.setState({showLoader: true})
-        axios("GET", urls.users, null, null, new GetUsersResponseHandler(this), new GetUsersErrorHandler(this))
+        const url = (this.state.role === "ADMINISTRATOR") ? urls.adminusers : urls.moderatorusers
+        axios("GET", url, null, null, new GetUsersResponseHandler(this), new GetUsersErrorHandler(this))
     }
 
     addUser() {
@@ -70,13 +72,14 @@ export default class Admin extends React.Component {
             const data = formData
             
             this.setState({showLoader: true})
-            axios("POST", urls.users, data, headers, new AddUserResponseHandler(this), new AddUserErrorHandler(this))
+            axios("POST", urls.adminusers, data, headers, new AddUserResponseHandler(this), new AddUserErrorHandler(this))
         }
     }
 
     deleteUser(userId) {
         this.setState({showLoader: true})
-        axios("DELETE", urls.users + "/" + userId, null, null, new DeleteUserResponseHandler(this), new DeleteUserErrorHandler(this))
+        const url = (this.state.role === "ADMINISTRATOR") ? urls.adminusers : urls.moderatorusers
+        axios("DELETE", url + "/" + userId, null, null, new DeleteUserResponseHandler(this), new DeleteUserErrorHandler(this))
     }
 
     componentDidMount() {
@@ -84,7 +87,7 @@ export default class Admin extends React.Component {
     }
 
     render() {
-        const role = reactLocalStorage.get('role')
+        const role = this.state.role
         let userForm;
         if(role === "ADMINISTRATOR") {
             userForm = (

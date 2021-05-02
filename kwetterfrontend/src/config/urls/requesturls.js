@@ -7,8 +7,10 @@ const urls = {
     tweet: gateway + 'tweet',
     mentions: gateway + 'mention',
     trends: gateway + 'trend',
-    users: gateway + 'adminuser',
-    role: gateway + 'adminrole'
+    adminusers: gateway + 'adminuser',
+    adminrole: gateway + 'adminrole',
+    moderatorusers: gateway + 'moderatoruser',
+    moderatorrole: gateway + 'moderatorrole'
 }
 
 export default urls;
