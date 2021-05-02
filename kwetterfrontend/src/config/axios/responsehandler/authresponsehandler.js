@@ -10,6 +10,7 @@ export default class AuthResponseHandler {
         if(this.result.status === 200) {
             const response = this.result.data
             reactLocalStorage.set('username', response.username)
+            reactLocalStorage.set('role', response.role)
             window.location.href = "/"
         }
     }

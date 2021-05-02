@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const instance = axios.create()
+const instance = axios.create({
+    withCredentials: true
+})
 
 //before request
 instance.interceptors.request.use(function(config) {
@@ -23,35 +25,19 @@ instance.interceptors.response.use(function(response) {
 
 });
 
-const getRequest = (url, data, headers, responseHandler, errorHandler) => {
-    instance.get(url, data, headers)
-    .then((result) => {
-        responseHandler.setResult(result)
-        responseHandler.handleResponse()
-    })
-    .catch((error) => {
-        errorHandler.setError(error)
-        errorHandler.handleError()
-    })
-}
-
-const postRequest = (url, data, headers, responseHandler, errorHandler) => {
-    instance.post(url, data, headers)
-    .then((result) => {
-        responseHandler.setResult(result)
-        responseHandler.handleResponse()
-    })
-    .catch((error) => {
-        errorHandler.setError(error)
-        errorHandler.handleError()
-    })
-}
-
 export default function(type, url, data, headers, responseHandler, errorHandler) {
-    if(type === "GET") {
-        getRequest(url, data, headers, responseHandler, errorHandler)
-    }
-    else if(type === "POST") {
-        postRequest(url, data, headers, responseHandler, errorHandler)
-    }
+    instance({
+        method: type,
+        url: url,
+        data: data,
+        headers: headers
+    })
+    .then((result) => {
+        responseHandler.setResult(result)
+        responseHandler.handleResponse()
+    })
+    .catch((error) => {
+        errorHandler.setError(error)
+        errorHandler.handleError()
+    })
 }

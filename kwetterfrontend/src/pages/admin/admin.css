@@ -1,0 +1,75 @@
+.flexColumnWrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#overviewWrapper {
+    border-top: 1px solid #000;
+}
+
+#filterWrapper, #usersWrapper {
+   padding: 1rem;
+   background-color: #eee;
+}
+
+#filterWrapper {
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+}
+
+.filterItem {
+    margin: .5rem;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+tbody tr:first-child{
+    border-top: 1px solid #f28e0b !important;
+}
+
+th{
+    background-color: #fff;
+}
+
+td{
+    border: 1px solid #ccc;
+    border-top: none;
+    white-space: nowrap;
+}
+
+td, th{
+    padding: 1rem;
+}
+
+td:last-child{
+    white-space: normal !important;
+}
+
+tr:nth-child(even){
+    background-color: #fff;
+}
+
+tr:nth-child(odd){
+    background-color: #fafafa;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#photo {
+    display: flex;
+    flex-direction: column;
+}
+

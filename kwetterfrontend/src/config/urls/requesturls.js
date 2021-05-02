@@ -7,6 +7,8 @@ const urls = {
     tweet: gateway + 'tweet',
     mentions: gateway + 'mention',
     trends: gateway + 'trend',
+    users: gateway + 'adminuser',
+    role: gateway + 'adminrole'
 }
 
 export default urls;
