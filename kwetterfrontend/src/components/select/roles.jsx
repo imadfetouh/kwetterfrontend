@@ -29,7 +29,7 @@ export default class Roles extends React.Component {
         formData.append('role', roleJson)
 
         const data = formData
-        const url = (this.state.role === "ADMINISTRATOR") ? urls.adminusers : urls.moderatorusers + '/' + userId
+        const url = (this.state.role === "ADMINISTRATOR") ? urls.adminrole : urls.moderatorrole + '/' + userId
         axios("PUT", url, data, null, new ChangeRoleResponseHandler(this, event), new ChangeRoleErrorHandler(this, event))
     }
 
