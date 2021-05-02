@@ -11,6 +11,8 @@ export default class AuthResponseHandler {
             const response = this.result.data
             reactLocalStorage.set('username', response.username)
             reactLocalStorage.set('role', response.role)
+            reactLocalStorage.set('userId', response.userId)
+            console.log(this.result.data)
             window.location.href = "/"
         }
     }
