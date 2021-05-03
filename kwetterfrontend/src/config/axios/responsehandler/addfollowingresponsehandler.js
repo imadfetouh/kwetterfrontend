@@ -10,7 +10,10 @@ export default class AddFollowingResponseHandler {
 
     handleResponse() {
         if(this.result.status === 200) {
-            this.c.setState({showFollowButton: false})
+            let oldProfile = this.c.state.profile
+            oldProfile.follow = 1
+            oldProfile.followers++
+            this.c.setState({showLoader: false})
         }
     }
 }

@@ -12,7 +12,6 @@ export default class GetProfileResponseHandler {
         if(this.result.status === 200) {
             this.c.setState({profile: this.result.data})
             this.c.setState({notificationMessage: ""})
-            console.log(this.result.data)
         }
         else if(this.result.status === 204) {
             this.c.setState({profile: {}})
