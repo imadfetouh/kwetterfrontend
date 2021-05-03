@@ -8,6 +8,7 @@ const urls = {
     mentions: gateway + 'mention',
     trends: gateway + 'trend',
     profile: gateway + 'profile',
+    following: gateway + 'following',
     adminusers: gateway + 'adminuser',
     adminrole: gateway + 'adminrole',
     moderatorusers: gateway + 'moderatoruser',

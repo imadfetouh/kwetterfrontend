@@ -10,6 +10,8 @@ import Spinner from '../../components/loader/spinner'
 import Notification from '../../components/notification/notification'
 import GetProfileResponseHandler from '../../config/axios/responsehandler/getprofileresponsehandler'
 import GetProfileErrorHandler from '../../config/axios/errorhandler/getprofileerrorhandler'
+import AddFollowingResponseHandler from '../../config/axios/responsehandler/addfollowingresponsehandler'
+import AddFollowingErrorHandler from '../../config/axios/errorhandler/addfollowingerrorhandler'
 import {reactLocalStorage} from 'reactjs-localstorage';
 
 export default class Profile extends React.Component {
@@ -22,6 +24,7 @@ export default class Profile extends React.Component {
             profile: {}
         }
         this.getProfile = this.getProfile.bind(this)
+        this.addFollow = this.addFollow.bind(this)
     }
 
     getProfile() {
@@ -29,6 +32,13 @@ export default class Profile extends React.Component {
         
         this.setState({showLoader: true})
         axios("GET", urls.profile + '/' + userId, null, null, new GetProfileResponseHandler(this), new GetProfileErrorHandler(this))
+    }
+
+    addFollow() {
+        const userId = this.getParameterByName("userId")
+        
+        this.setState({showLoader: true})
+        axios("POST", urls.following + '/' + userId, null, null, new AddFollowingResponseHandler(this), new AddFollowingErrorHandler(this))
     }
 
     componentDidMount() {
@@ -50,7 +60,7 @@ export default class Profile extends React.Component {
         
         if(profile.userId !== this.state.userId && profile.follow === null) {
             follow = (
-                <Button value="Follow" onClick={this.signIn}></Button>
+                <Button value="Follow" onClick={this.addFollow}></Button>
             )
         }
         
