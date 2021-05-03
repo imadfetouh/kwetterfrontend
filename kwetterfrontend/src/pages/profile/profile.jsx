@@ -21,7 +21,8 @@ export default class Profile extends React.Component {
             userId: reactLocalStorage.get('userId'),
             showLoader: false,
             notificationMessage: "",
-            profile: {}
+            profile: {},
+            showFollowButton: false
         }
         this.getProfile = this.getProfile.bind(this)
         this.addFollow = this.addFollow.bind(this)
@@ -56,9 +57,14 @@ export default class Profile extends React.Component {
 
     render() {
         let profile = this.state.profile
+        let showFollowButton = this.state.showFollowButton
         let follow;
         
         if(profile.userId !== this.state.userId && profile.follow === null) {
+            this.setState({showFollowButton: true})
+        }
+
+        if(showFollowButton) {
             follow = (
                 <Button value="Follow" onClick={this.addFollow}></Button>
             )

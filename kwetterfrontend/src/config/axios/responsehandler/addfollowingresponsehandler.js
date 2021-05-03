@@ -10,7 +10,7 @@ export default class AddFollowingResponseHandler {
 
     handleResponse() {
         if(this.result.status === 200) {
-            this.c.getProfile()
+            this.c.setState({showFollowButton: false})
         }
     }
 }
