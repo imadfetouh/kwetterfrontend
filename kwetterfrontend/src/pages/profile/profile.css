@@ -7,10 +7,21 @@
 
 #flexColumnContent, #tweetsWrapper {
     width: 40%;
-    background-color: #eee;
     margin: 0 auto;
     margin-top: 2rem;
+}
+
+#flexColumnContent {
+    background-color: #eee;
     padding: 2rem;
+}
+
+#tweetsWrapper {
+    width: 40%;
+}
+
+.paddingBox {
+    padding: 1rem;
 }
 
 #flexRowWrapper {

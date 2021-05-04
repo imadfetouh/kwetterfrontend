@@ -1,9 +1,9 @@
 import React from 'react'
 import './home.css'
-import logo from '../../img/duck.png'
 import Menu from '../../components/header/nav'
 import New from '../../components/tweet/new/new'
 import axios from '../../config/axios/axios'
+import Tweet from '../../components//tweet/tweet/tweet'
 import urls from '../../config/urls/requesturls'
 import Spinner from '../../components/loader/spinner'
 import Notification from '../../components/notification/notification'
@@ -66,30 +66,7 @@ export default class Home extends React.Component {
                             <Spinner showLoader={this.state.showLoader}/>
                             <New></New>
                             {this.state.tweets.map((t, i) => {
-                                return (
-                                    <div className="boxShadow rounded tweetBox paddingBox">
-                                        <div className="tweetFlex">
-                                            <div className="tweetPic flexCenterTop">
-                                                <img src={logo} alt=""/>
-                                            </div>
-                                            <div className="tweetData flexCenterLeft">
-                                                <div className="tweetUsername">
-                                                    <label>{t.user.username}</label>
-                                                </div>
-                                                <div className="tweetDate">
-                                                    <label>{t.date} | {t.time}</label>
-                                                </div>
-                                                <div className="tweetContent">
-                                                    <p>{t.content}</p>
-                                                </div>
-                                                <div className="tweetActions">
-                                                    <label>{t.likes} likes</label>
-                                                    <span>&#9825;</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
+                                return <Tweet tweet={t} username={t.user.username}/>
                             })}
                         </div>
                         <div id="trendWrapper">

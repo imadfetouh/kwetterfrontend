@@ -21,7 +21,7 @@ export default class Profile extends React.Component {
             userId: reactLocalStorage.get('userId'),
             showLoader: false,
             notificationMessage: "",
-            profile: {}
+            profile: {tweets:[]}
         }
         this.getProfile = this.getProfile.bind(this)
         this.addFollow = this.addFollow.bind(this)
@@ -111,9 +111,9 @@ export default class Profile extends React.Component {
                         </div>
                     </div>
                     <div id="tweetsWrapper">
-                    {/* {profile.tweets.map((t, i) => {
-                        <Tweet tweet={t}/>
-                    })} */}
+                    {profile.tweets.map((t, i) => {
+                        return <Tweet tweet={t} username={profile.username}/>
+                    })}
                     </div>
                 </div>
             </div>

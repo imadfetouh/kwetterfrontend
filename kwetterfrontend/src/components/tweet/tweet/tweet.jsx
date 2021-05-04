@@ -16,7 +16,7 @@ export default class Tweet extends React.Component {
                     </div>
                     <div className="tweetData flexCenterLeft">
                         <div className="tweetUsername">
-                            <label>{this.props.tweet.user.username}</label>
+                            <label>{this.props.username}</label>
                         </div>
                         <div className="tweetDate">
                             <label>{this.props.tweet.date} | {this.props.tweet.time}</label>

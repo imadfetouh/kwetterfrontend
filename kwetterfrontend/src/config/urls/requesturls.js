@@ -9,6 +9,7 @@ const urls = {
     trends: gateway + 'trend',
     profile: gateway + 'profile',
     following: gateway + 'following',
+    search: gateway + 'search',
     adminusers: gateway + 'adminuser',
     adminrole: gateway + 'adminrole',
     moderatorusers: gateway + 'moderatoruser',

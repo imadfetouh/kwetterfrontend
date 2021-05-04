@@ -1,4 +1,4 @@
-export default class GetProfileErrorHandler {
+export default class GetUsersErrorHandler {
 
     constructor(c) {
         this.c = c
@@ -10,6 +10,5 @@ export default class GetProfileErrorHandler {
 
     handleError() {
         this.c.setState({notificationMessage: "Oops! Something went wrong"})
-        this.c.setState({showLoader: false})
     }
 }

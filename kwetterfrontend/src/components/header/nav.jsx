@@ -4,14 +4,62 @@ import logo from '../../img/duck.png'
 import manager from '../../img/manager.png'
 import FormGroup from '../form-group/form-group'
 import InputField from '../input/inputfield/inputfield'
+import Notification from '../notification/notification'
 import {reactLocalStorage} from 'reactjs-localstorage'
+import {debounce} from 'debounce'
+import urls from '../../config/urls/requesturls'
+import axios from '../../config/axios/axios'
+import SearchResponseHandler from '../../config/axios/responsehandler/searchresponsehandler'
+import SearchErrorHandler from '../../config/axios/errorhandler/searcherrorhandler'
 
 class Nav extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            results: [],
+            notificationMessage: ""
+        }
+        this.search = debounce(this.search.bind(this), 500)
+    }
+
+    search(event) {
+        const search = event.target.value.trim()
+        
+        if(search !== "") {
+            axios("GET", urls.search + '?search=' + search, null, null, new SearchResponseHandler(this), new SearchErrorHandler(this))
+        }
+        else {
+            this.setState({results: []})
+        }
+    }
+
+    viewResult(type, itemId) {
+        if(type === "user") {
+            window.location.href = "/profile?userId=" + itemId
+        }
     }
 
     render() {
+        let searchResults;
+
+        if(this.state.results.length > 0) {
+            searchResults = (
+                this.state.results.map((r, i) => {
+                    return (
+                        <div className="resultItem" key={i} onClick={() => this.viewResult(r.type, r.itemId)}>
+                            <div className="itemPhoto">
+                                <img src={logo} />
+                            </div>
+                            <div className="itemDescription">
+                                <p>{r.description}</p>
+                                <small>{r.type}</small>
+                            </div>
+                        </div>
+                    )
+                })
+            )
+        }
+
         return (
             <div className="wrapper">
                 <div id="menuWrapper" className="boxShadow">
@@ -22,8 +70,14 @@ class Nav extends React.Component {
                             </div>
                             <div id="menuSearch" className="flexCenterLeft">
                                 <FormGroup>
-                                    <InputField type="text" placeholder="Search.." id="search"/>
+                                    <InputField type="text" placeholder="Search.." id="search" onKeyUp={this.search}/>
                                 </FormGroup>
+                                <div id="resultsWrapper" className="boxShadow">
+                                    <Notification message={this.state.notificationMessage}/>
+                                    <div id="searchResults">
+                                        {searchResults}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div id="menuRight" className="flexCenter">
