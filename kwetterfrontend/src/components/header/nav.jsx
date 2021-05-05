@@ -4,6 +4,7 @@ import logo from '../../img/duck.png'
 import manager from '../../img/manager.png'
 import FormGroup from '../form-group/form-group'
 import InputField from '../input/inputfield/inputfield'
+import Button from '../button/button'
 import Notification from '../notification/notification'
 import {reactLocalStorage} from 'reactjs-localstorage'
 import {debounce} from 'debounce'
@@ -11,6 +12,7 @@ import urls from '../../config/urls/requesturls'
 import axios from '../../config/axios/axios'
 import SearchResponseHandler from '../../config/axios/responsehandler/searchresponsehandler'
 import SearchErrorHandler from '../../config/axios/errorhandler/searcherrorhandler'
+import LogoutResponseHandler from '../../config/axios/responsehandler/logoutresponsehandler'
 
 class Nav extends React.Component {
     constructor(props) {
@@ -19,7 +21,8 @@ class Nav extends React.Component {
             results: [],
             notificationMessage: ""
         }
-        this.search = debounce(this.search.bind(this), 500)
+        this.search = debounce(this.search.bind(this), 300)
+        this.logout = this.logout.bind(this)
     }
 
     search(event) {
@@ -33,10 +36,12 @@ class Nav extends React.Component {
         }
     }
 
-    viewResult(type, itemId) {
-        if(type === "user") {
-            window.location.href = "/profile?userId=" + itemId
-        }
+    viewResult(itemId) {
+        window.location.href = "/profile?userId=" + itemId
+    }
+
+    logout() {
+        axios("GET", urls.logout, null, null, new LogoutResponseHandler(this), new LogoutResponseHandler(this))
     }
 
     render() {
@@ -46,7 +51,7 @@ class Nav extends React.Component {
             searchResults = (
                 this.state.results.map((r, i) => {
                     return (
-                        <div className="resultItem" key={i} onClick={() => this.viewResult(r.type, r.itemId)}>
+                        <div className="resultItem" key={i} onClick={() => this.viewResult(r.itemId)}>
                             <div className="itemPhoto">
                                 <img src={logo} />
                             </div>
@@ -86,6 +91,9 @@ class Nav extends React.Component {
                             </div>
                             <div id="menuUsername" className="flexCenter">
                                 <label id="lblMenuUsername">{reactLocalStorage.get('username')}</label>
+                            </div>
+                            <div id="menuLogout" className="flexCenter">
+                                <Button value="Logout" onClick={this.logout}></Button>
                             </div>
                         </div>
                     </div>

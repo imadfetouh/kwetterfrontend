@@ -14,7 +14,7 @@ export default class GetProfileResponseHandler {
             this.c.setState({notificationMessage: ""})
         }
         else if(this.result.status === 204) {
-            this.c.setState({profile: {}})
+            this.c.setState({profile: {tweets:[]}})
             this.c.setState({notificationMessage: "User not found"})
         }
 

@@ -1,0 +1,46 @@
+#modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1001;
+}
+
+#contentWrapper {
+    width: 50%;
+    height: auto;
+    max-height: 80%;
+    overflow-y: auto;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+#modalContent {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#modalHeader, #modalBody, #modalFooter {
+    padding: 1rem;
+}
+
+#modalHeader {
+    background-color: #eee;
+}
+
+#modalHeader h3 {
+    margin: 0;
+    padding: 0;
+}
+
+#modalFooter {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#buttonWrapper {
+    width: 30%;
+}

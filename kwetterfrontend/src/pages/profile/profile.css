@@ -85,3 +85,21 @@
 #divBio {
     font-style: italic;
 }
+
+.followUser {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+}
+
+.followUserPhoto img{
+    max-width: 3vw;
+}
+
+.followUsername {
+    flex: 1;
+    padding-left: 1rem;
+    font-weight: bold;
+}

@@ -80,7 +80,7 @@
     font-size: 1.5rem;
 }
 
-#menuManager {
+#menuManager, #menuUsername {
     margin-right: .5rem;
 }
 

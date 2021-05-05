@@ -13,7 +13,8 @@ const urls = {
     adminusers: gateway + 'adminuser',
     adminrole: gateway + 'adminrole',
     moderatorusers: gateway + 'moderatoruser',
-    moderatorrole: gateway + 'moderatorrole'
+    moderatorrole: gateway + 'moderatorrole',
+    logout: gateway + 'logout'
 }
 
 export default urls;

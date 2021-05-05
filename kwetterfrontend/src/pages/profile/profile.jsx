@@ -3,6 +3,7 @@ import './profile.css'
 import Menu from '../../components/header/nav'
 import Tweet from '../../components//tweet/tweet/tweet'
 import Button from '../../components/button/button'
+import Modal from '../../components/modal/modal'
 import logo from '../../img/duck.png'
 import axios from '../../config/axios/axios'
 import urls from '../../config/urls/requesturls'
@@ -12,6 +13,8 @@ import GetProfileResponseHandler from '../../config/axios/responsehandler/getpro
 import GetProfileErrorHandler from '../../config/axios/errorhandler/getprofileerrorhandler'
 import AddFollowingResponseHandler from '../../config/axios/responsehandler/addfollowingresponsehandler'
 import AddFollowingErrorHandler from '../../config/axios/errorhandler/addfollowingerrorhandler'
+import GetFollowingUsersResponseHandler from '../../config/axios/responsehandler/getfollowingusersresponsehandler'
+import GetFollowingUsersErrorHandler from '../../config/axios/errorhandler/getfollowinguserserrorhandler'
 import {reactLocalStorage} from 'reactjs-localstorage';
 
 export default class Profile extends React.Component {
@@ -21,11 +24,18 @@ export default class Profile extends React.Component {
             userId: reactLocalStorage.get('userId'),
             showLoader: false,
             notificationMessage: "",
-            profile: {tweets:[]}
+            profile: {tweets:[]},
+            followUsers: [],
+            modalHeader: "",
+            showModal: false,
+            showModalLoader: false
         }
         this.getProfile = this.getProfile.bind(this)
         this.addFollow = this.addFollow.bind(this)
+        this.getFollowing = this.getFollowing.bind(this)
+        this.closeModal = this.closeModal.bind(this)
     }
+
 
     getProfile() {
         const userId = this.getParameterByName("userId")
@@ -41,6 +51,17 @@ export default class Profile extends React.Component {
         axios("POST", urls.following + '/' + userId, null, null, new AddFollowingResponseHandler(this), new AddFollowingErrorHandler(this))
     }
 
+    getFollowing(header) {
+        const userId = this.getParameterByName("userId")
+        this.setState({modalHeader: header})
+        this.setState({showModalLoader: true})
+        this.setState({showModal: true})
+
+        const url = (header === "Following") ? urls.following + '/followings/' + userId : urls.following + '/followers/' + userId
+
+        axios("GET", url, null, null, new GetFollowingUsersResponseHandler(this), new GetFollowingUsersErrorHandler(this))
+    }
+
     componentDidMount() {
         this.getProfile()
     }
@@ -54,6 +75,10 @@ export default class Profile extends React.Component {
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
 
+    closeModal() {
+        this.setState({showModal: false})
+    }
+
     render() {
         let profile = this.state.profile
         let follow;
@@ -63,9 +88,30 @@ export default class Profile extends React.Component {
                 <Button value="Follow" onClick={this.addFollow}></Button>
             )
         }
+
+        let showUsers;
+        if(this.state.showModal) {
+            showUsers = (
+                <Modal header={this.state.modalHeader} showLoader={this.state.showModalLoader} onClick={this.closeModal}>
+                    {this.state.followUsers.map((f, i) => {
+                        return (
+                            <div className="followUser">
+                                <div className="followUserPhoto">
+                                    <img src={logo} />
+                                </div>
+                                <div className="followUsername flexCenterLeft">
+                                    <label>{f.username}</label>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </Modal>
+            )
+        }
         
         return (
             <div className="wrapper">
+                {showUsers}
                 <Spinner showLoader={this.state.showLoader}/>
                 <div id="flexColumnWrapper">
                     <Menu></Menu>
@@ -83,14 +129,14 @@ export default class Profile extends React.Component {
                             <div id="userStats">
                                 <div id="divFollowers">
                                     <div className="stat">
-                                        <label className="lblBold">5</label>
+                                        <label className="lblBold">{profile.tweets.length}</label>
                                         <label>Tweets</label>
                                     </div>
-                                    <div className="stat">
+                                    <div className="stat" onClick={() => this.getFollowing("Followers")}>
                                         <label className="lblBold">{profile.followers}</label>
                                         <label>Followers</label>
                                     </div>
-                                    <div className="stat">
+                                    <div className="stat" onClick={() => this.getFollowing("Following")}>
                                         <label className="lblBold">{profile.following}</label>
                                         <label>Following</label>
                                     </div>
