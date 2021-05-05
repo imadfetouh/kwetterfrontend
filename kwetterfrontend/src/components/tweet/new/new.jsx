@@ -31,9 +31,14 @@ export default class New extends React.Component {
             return;
         }
 
+        let formData = new FormData()
+        formData.append('content', content)
+
+        const headers = {"headers": {"content-type": "multipart/form-data"}}
+        const data = formData
+
         this.setState({showLoader: true})
-        const headers = {"headers": {"content-type": "application/json"}}
-        const data = content
+
         axios("POST", urls.tweet, data, headers, new AddTweetResponseHandler(this), new AddTweetErrorHandler(this))
     }
 
