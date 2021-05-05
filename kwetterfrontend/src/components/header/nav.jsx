@@ -13,6 +13,7 @@ import axios from '../../config/axios/axios'
 import SearchResponseHandler from '../../config/axios/responsehandler/searchresponsehandler'
 import SearchErrorHandler from '../../config/axios/errorhandler/searcherrorhandler'
 import LogoutResponseHandler from '../../config/axios/responsehandler/logoutresponsehandler'
+import LogoutErrorHandler from '../../config/axios/errorhandler/logouterrorhandler'
 
 class Nav extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class Nav extends React.Component {
     }
 
     logout() {
-        axios("GET", urls.logout, null, null, new LogoutResponseHandler(this), new LogoutResponseHandler(this))
+        axios("GET", urls.logout, null, null, new LogoutResponseHandler(this), new LogoutErrorHandler(this))
     }
 
     render() {
