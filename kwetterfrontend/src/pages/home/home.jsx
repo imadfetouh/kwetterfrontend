@@ -4,6 +4,8 @@ import Menu from '../../components/header/nav'
 import New from '../../components/tweet/new/new'
 import axios from '../../config/axios/axios'
 import Tweet from '../../components//tweet/tweet/tweet'
+import FormGroup from '../../components/form-group/form-group'
+import Button from '../../components/button/button'
 import urls from '../../config/urls/requesturls'
 import Spinner from '../../components/loader/spinner'
 import Notification from '../../components/notification/notification'
@@ -20,11 +22,11 @@ export default class Home extends React.Component {
             notificationMessage: "",
             notificationTrendMessage: "",
             tweets: [],
-            mentions: [],
             trends: []
         }
         this.getTweets = this.getTweets.bind(this)
         this.getTrends = this.getTrends.bind(this)
+        this.getMentions = this.getMentions.bind(this)
     }
 
     getTweets() {
@@ -34,6 +36,11 @@ export default class Home extends React.Component {
 
     getTrends() {
         axios("GET", urls.trends, null, null, new GetTrendsResponseHandler(this), new GetTrendsErrorHandler(this))
+    }
+
+    getMentions() {
+        this.setState({showLoader: true})
+        axios("GET", urls.mentions, null, null, new GetTweetsResponseHandler(this), new GetTweetsErrorHandler(this))
     }
 
     getTweetTrends(trend) {
@@ -54,10 +61,17 @@ export default class Home extends React.Component {
                     <Menu></Menu>
                     <div id="flexRowWrapper">
                         <div id="mentionWrapper">
-                            <div className="boxShadow rounded mentionBox paddingBox">
-                                <h4>Your mentions</h4>
+                            <div className="boxShadow rounded filterBox paddingBox">
+                                <h4>Filter</h4>
                                 <div>
-
+                                    <FormGroup>
+                                        <Button value="Show tweets" onClick={this.getTweets}></Button>
+                                    </FormGroup>
+                                </div>
+                                <div>
+                                    <FormGroup>
+                                        <Button value="Show tweets where i am mentioned" onClick={this.getMentions}></Button>
+                                    </FormGroup>
                                 </div>
                             </div>
                         </div>

@@ -30,13 +30,13 @@
     margin-right: 2rem;
 }
 
-.mentionBox, .trendBox {
+.filterBox, .trendBox {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.mentionBox h4, .trendBox h4 {
+.filterBox h4, .trendBox h4 {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #ccc;
