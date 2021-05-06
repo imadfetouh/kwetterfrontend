@@ -33,11 +33,15 @@ export default function(type, url, data, headers, responseHandler, errorHandler)
         headers: headers
     })
     .then((result) => {
-        responseHandler.setResult(result)
-        responseHandler.handleResponse()
+        if(responseHandler !== null) {
+            responseHandler.setResult(result)
+            responseHandler.handleResponse()
+        }
     })
     .catch((error) => {
-        errorHandler.setError(error)
-        errorHandler.handleError()
+        if(errorHandler !== null) {
+            errorHandler.setError(error)
+            errorHandler.handleError()
+        }
     })
 }

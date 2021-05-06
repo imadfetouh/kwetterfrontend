@@ -158,7 +158,7 @@ export default class Profile extends React.Component {
                     </div>
                     <div id="tweetsWrapper">
                     {profile.tweets.map((t, i) => {
-                        return <Tweet tweet={t} username={profile.username}/>
+                        return <Tweet tweet={t} username={profile.username} key={i+'tweet'}/>
                     })}
                     </div>
                 </div>

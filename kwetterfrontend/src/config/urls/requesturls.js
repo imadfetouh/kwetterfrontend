@@ -7,6 +7,7 @@ const urls = {
     tweet: gateway + 'tweet',
     mentions: gateway + 'mention',
     trends: gateway + 'trend',
+    like: gateway + 'like',
     profile: gateway + 'profile',
     following: gateway + 'following',
     search: gateway + 'search',

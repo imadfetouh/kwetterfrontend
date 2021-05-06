@@ -1,13 +1,35 @@
 import React from 'react'
 import './tweet.css'
 import logo from '../../../img/duck.png'
+import urls from '../../../config/urls/requesturls'
+import axios from '../../../config/axios/axios'
 
 export default class Tweet extends React.Component {
     constructor(props) {
         super(props)
+        this.likeTweet = this.likeTweet.bind(this)
+    }
+
+    likeTweet(event) {
+        event.target.classList.add("fillSpan")
+        event.target.innerHTML = "&#9829;"
+
+        const tweetId = this.props.tweet.tweetId
+
+        axios("PUT", urls.like + "/" + tweetId, null, null, null, null)
     }
 
     render() {
+        let userLiked = new Boolean(this.props.tweet.userLiked).toString();
+        let likeBtn;
+
+        if(userLiked !== "true") {
+            likeBtn = <span onClick={this.likeTweet}>&#9825;</span>
+        }
+        else {
+            likeBtn = <span className="fillSpan">&#9829;</span>
+        }
+
         return (
             <div className="boxShadow rounded tweetBox paddingBox">
                 <div className="tweetFlex">
@@ -26,7 +48,7 @@ export default class Tweet extends React.Component {
                         </div>
                         <div className="tweetActions">
                             <label>{this.props.tweet.likes} likes</label>
-                            <span>&#9825;</span>
+                            {likeBtn}
                         </div>
                     </div>
                 </div>

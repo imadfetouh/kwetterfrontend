@@ -80,7 +80,7 @@ export default class Home extends React.Component {
                             <Spinner showLoader={this.state.showLoader}/>
                             <New></New>
                             {this.state.tweets.map((t, i) => {
-                                return <Tweet tweet={t} username={t.user.username}/>
+                                return <Tweet tweet={t} username={t.user.username} key={i+'tweet'}/>
                             })}
                         </div>
                         <div id="trendWrapper">
@@ -89,7 +89,7 @@ export default class Home extends React.Component {
                                 <h4>Trends</h4>
                                 {this.state.trends.map((t, i) => {
                                 return (
-                                    <label className="lblTrend" onClick={() => this.getTweetTrends(t.trend)}>{t.trend}</label>
+                                    <label className="lblTrend" onClick={() => this.getTweetTrends(t.trend)} key={i+'trend'}>{t.trend}</label>
                                 )
                             })}
                             </div>

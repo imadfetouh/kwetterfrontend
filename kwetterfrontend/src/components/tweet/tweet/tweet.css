@@ -58,6 +58,10 @@
     width: fit-content;
 }
 
+.fillSpan {
+    color: red;
+}
+
 .tweetActions span:hover{
     color: red;
 }
