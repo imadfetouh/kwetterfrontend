@@ -14,7 +14,6 @@ import SearchResponseHandler from '../../config/axios/responsehandler/searchresp
 import SearchErrorHandler from '../../config/axios/errorhandler/searcherrorhandler'
 import LogoutResponseHandler from '../../config/axios/responsehandler/logoutresponsehandler'
 import LogoutErrorHandler from '../../config/axios/errorhandler/logouterrorhandler'
-import {reactLocalStorage} from 'reactjs-localstorage';
 
 class Nav extends React.Component {
     constructor(props) {
