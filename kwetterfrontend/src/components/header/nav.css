@@ -82,6 +82,7 @@
 
 #menuManager, #menuUsername {
     margin-right: .5rem;
+    cursor: pointer;
 }
 
 #menuManager a{

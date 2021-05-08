@@ -14,11 +14,13 @@ import SearchResponseHandler from '../../config/axios/responsehandler/searchresp
 import SearchErrorHandler from '../../config/axios/errorhandler/searcherrorhandler'
 import LogoutResponseHandler from '../../config/axios/responsehandler/logoutresponsehandler'
 import LogoutErrorHandler from '../../config/axios/errorhandler/logouterrorhandler'
+import {reactLocalStorage} from 'reactjs-localstorage';
 
 class Nav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            userId: reactLocalStorage.get('userId'),
             results: [],
             notificationMessage: ""
         }
@@ -46,7 +48,9 @@ class Nav extends React.Component {
     }
 
     render() {
+        const role = reactLocalStorage.get('role');
         let searchResults;
+        let showAdminIcon;
 
         if(this.state.results.length > 0) {
             searchResults = (
@@ -63,6 +67,14 @@ class Nav extends React.Component {
                         </div>
                     )
                 })
+            )
+        }
+
+        if(role === "ADMINISTRATOR") {
+            showAdminIcon = ( 
+                <div id="menuManager" className="flexCenter">
+                    <a href="/manage" className="flexCenter"><img src={manager} id="manager" alt=""/></a>
+                </div>
             )
         }
 
@@ -87,11 +99,11 @@ class Nav extends React.Component {
                             </div>
                         </div>
                         <div id="menuRight" className="flexCenter">
-                            <div id="menuManager" className="flexCenter">
-                                <a href="/manage" className="flexCenter"><img src={manager} id="manager" alt=""/></a>
-                            </div>
+                            {showAdminIcon}
                             <div id="menuUsername" className="flexCenter">
-                                <label id="lblMenuUsername">{reactLocalStorage.get('username')}</label>
+                                <a href={"/profile?userId="+this.state.userId} className="flexCenter">
+                                    <label id="lblMenuUsername">{reactLocalStorage.get('username')}</label>
+                                </a>
                             </div>
                             <div id="menuLogout" className="flexCenter">
                                 <Button value="Logout" onClick={this.logout}></Button>
