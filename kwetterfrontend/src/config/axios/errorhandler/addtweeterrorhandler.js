@@ -13,6 +13,9 @@ export default class AddTweetErrorHandler {
             if(this.error.response.status === 400) {
                 this.c.setState({notificationMessage: "Please add some content first"})
             }
+            else if(this.error.response.status === 422) {
+                this.c.setState({notificationMessage: "Tweet content is not acceptable"})
+            }
             else{
                 this.c.setState({notificationMessage: "Oops! Something went wrong"})
             }
