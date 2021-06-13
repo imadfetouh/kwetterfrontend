@@ -69,7 +69,7 @@ class Nav extends React.Component {
             )
         }
 
-        if(role === "ADMINISTRATOR") {
+        if(role === "ADMINISTRATOR" || role === "MODERATOR") {
             showAdminIcon = ( 
                 <div id="menuManager" className="flexCenter">
                     <a href="/manage" className="flexCenter"><img src={manager} id="manager" alt=""/></a>
